@@ -45,6 +45,7 @@ namespace BTCPayServer
             InitLiquid();
             InitLiquidAssets();
             InitLitecoin();
+            InitBitcoinCash();
             InitBitcore();
             InitDogecoin();
             InitBGold();
