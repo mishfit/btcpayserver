@@ -13,7 +13,7 @@ namespace BTCPayServer
             {
                 CryptoCode = nbxplorerNetwork.CryptoCode,
                 DisplayName = "Bitcoin Cash",
-                BlockExplorerLink = NetworkType == ChainName.Mainnet ? "https://blockchair.com/bitcoin-cash/transaction/{0}" :
+                BlockExplorerLink = NetworkType == ChainName.Mainnet ? "https://blockchain.com/bitcoin-cash/transaction/{0}" :
                                     "https://www.blockchain.com/bch-testnet/tx/{0}",
                 NBXplorerNetwork = nbxplorerNetwork,
                 UriScheme = "bitcoincash",
