@@ -86,19 +86,11 @@ namespace BTCPayServer.Payments.Bitcoin
                 model.InvoiceBitcoinUrlQR = "";
             }
 
-            // Most wallets still don't support BITCOIN: schema, so we're leaving this for better days
-            // Ref: https://github.com/btcpayserver/btcpayserver/pull/2060#issuecomment-723828348
-            //model.InvoiceBitcoinUrlQR = cryptoInfo.PaymentUrls.BIP21
-            //    .Replace("bitcoin:", "BITCOIN:", StringComparison.OrdinalIgnoreCase)
-
-            // We're leading the way in Bitcoin community with adding UPPERCASE Bech32 addresses in QR Code
-            if (network.CryptoCode.Equals("BTC", StringComparison.InvariantCultureIgnoreCase) && _bech32Prefix.TryGetValue(model.CryptoCode, out var prefix) && model.BtcAddress.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            {
-                model.InvoiceBitcoinUrlQR = model.InvoiceBitcoinUrlQR.Replace(
-                    $"{network.NBitcoinNetwork.UriScheme}:{model.BtcAddress}", $"{network.NBitcoinNetwork.UriScheme}:{model.BtcAddress.ToUpperInvariant()}",
-                    StringComparison.OrdinalIgnoreCase
-                );
-            }
+            // It is pure stupidity to create a tool for merchants and then "[lead] the way in"
+            // making it impossible for them to accept payment from some parts of the
+            // Bitcoin community by adding UPPERCASE Bech32 addresses in QR Code before 100% of
+            // clients can support it. The point of this entire endeavor is to support merchants
+            // and not to flex over irrelevant nonsense like saving bandwidth in QR Code generation.
         }
 
         public override string GetCryptoImage(PaymentMethodId paymentMethodId)
