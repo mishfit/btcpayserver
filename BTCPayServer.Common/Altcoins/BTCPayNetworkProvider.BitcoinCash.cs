@@ -16,7 +16,6 @@ namespace BTCPayServer
                 BlockExplorerLink = NetworkType == ChainName.Mainnet ? "https://blockchain.com/bitcoin-cash/transaction/{0}" :
                                     "https://www.blockchain.com/bch-testnet/tx/{0}",
                 NBXplorerNetwork = nbxplorerNetwork,
-                UriScheme = "bitcoincash",
                 CryptoImagePath = "imlegacy/bitcoin-cash.png",
                 DefaultSettings = BTCPayDefaultSettings.GetDefaultSettings(NetworkType),
                 CoinType = NetworkType == ChainName.Mainnet ? new KeyPath("0'") : new KeyPath("1'"),
