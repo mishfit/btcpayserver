@@ -11,17 +11,18 @@ pipeline {
                 HOME = "/tmp"
             }
             steps {
-                sh 'dotnet publish -c Altcoins-Release ./BTCPayServer/BTCPayServer.csproj --output ./public'
+                sh 'dotnet publish -c Altcoins-Release -r linux-x64 ./BTCPayServer/BTCPayServer.csproj --output ./public'
                 stash includes: '**/public/', name: 'app'
             }
         }
 
         stage("deploy") {
-            when { branch 'master' }
+              when { expression {  return env.BRANCH_NAME ==~ /release\/.*/ } }
             agent { label 'production' }
             steps {
                 unstash 'app'
-                sh 'cp -R public/* /var/blockchains/btcpayserver'
+                sh 'sudo cp -R public/* /var/blockchains/btcpayserver'
+                sh 'sudo chown -R blockchain:blockchain /var/blockchains/btcpayserver'
             }
         }
     }
