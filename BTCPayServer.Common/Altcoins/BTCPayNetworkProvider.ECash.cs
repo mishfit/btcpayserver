@@ -8,7 +8,7 @@ namespace BTCPayServer
     {
         public void InitECash()
         {
-            var nbxplorerNetwork = NBXplorerNetworkProvider.GetFromCryptoCode("BCH");
+            var nbxplorerNetwork = NBXplorerNetworkProvider.GetFromCryptoCode("XEC");
             Add(new BTCPayNetwork()
             {
                 CryptoCode = nbxplorerNetwork.CryptoCode,
