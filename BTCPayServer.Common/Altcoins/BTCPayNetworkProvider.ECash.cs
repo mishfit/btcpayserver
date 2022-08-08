@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using NBitcoin;
@@ -7,20 +8,19 @@ namespace BTCPayServer
 {
     public partial class BTCPayNetworkProvider
     {
-        private readonly ILogger<BTCPayNetworkProvider> _logger;
         public void InitECash()
         {
             var nbxplorerNetwork = NBXplorerNetworkProvider.GetFromCryptoCode("XEC");
 
             if (nbxplorerNetwork == null)
             {
-                _logger.LogError($"{nameof(nbxplorerNetwork)} is null.");
+                Console.WriteLine($"{nameof(nbxplorerNetwork)} is null.");
             }
 
             var defaultSettings = BTCPayDefaultSettings.GetDefaultSettings(NetworkType);
             if (defaultSettings == null)
             {
-                _logger.LogError($"{nameof(defaultSettings)} is null.");
+                Console.WriteLine($"{nameof(defaultSettings)} is null.");
             }
 
 
